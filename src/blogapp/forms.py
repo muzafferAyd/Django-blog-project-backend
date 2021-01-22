@@ -4,7 +4,7 @@ from .models import Post, Comment, Category
 class PostForm(forms.ModelForm):
     status = forms.ChoiceField(choices=Post.OPTIONS)
     category = forms.ModelChoiceField(
-        queryset=Category.object.all(), empty_label="Select")
+        queryset=Category.objects.all(), empty_label="Select")
     class Meta:
         model = Post
         fields = (
