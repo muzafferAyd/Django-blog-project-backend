@@ -5,9 +5,20 @@
 {% block content %}
 
 <h1>{{ object.title }}</h1>
-<img src="{{ object.image.url }}" alt="image" width="250px" height="200px">
+<img src="{{ object.image.url }}" alt="image" width="350px" height="300px">
 <p>{{object.content }}</p>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit">Comment</button>
+</form>
 
+{% for comment in object.comments %}
+<p>comment by {{user}}</p>  
+{{comment.content}}
+<hr>
+{% endfor %}
+    
 
 {% endblock content %}
     
