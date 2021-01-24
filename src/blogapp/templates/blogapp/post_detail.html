@@ -19,6 +19,12 @@
 <hr>
 {% endfor %}
     
+<form action="{% url 'blogapp:like' object.slug %}" method="post">
+    {% csrf_token %}
+    <input type="hidden", name="post">
+    <input type="hidden", name="user">
+    <button type="submit" >Like</button> {{object.like_count}}
+</form>
 
 {% endblock content %}
     

@@ -72,8 +72,9 @@ def like(request, slug):
     if request.method == "POST":
         obj = get_object_or_404(Post, slug=slug)
         like_qs = Like.objects.filter(user=request.user, post=obj)
-        if like_qs.exists():
+        if like_qs:
             like_qs[0].delete()
         else:
             Like.objects.create(user=request.user, post=obj)
+        return redirect("blogapp:detail", slug=slug)
 
