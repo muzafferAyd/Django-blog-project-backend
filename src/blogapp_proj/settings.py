@@ -39,8 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blogapp.apps.BlogappConfig',
+    #my-apps
     'blogapp_api.apps.BlogappApiConfig',
     'rest_framework',
+    'users.apps.UsersConfig',
+    #third-party
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -51,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'blogapp_proj.urls'
@@ -126,3 +131,5 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
 MEDIA_ROOT = BASE_DIR / "media_root"
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

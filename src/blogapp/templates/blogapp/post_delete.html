@@ -1,17 +1,19 @@
 {% extends 'base.html' %}
-
-
-
+{% load static %}
 {% block content %}
-<p>Are you sure delete {{object.title}}</p>
 
-<form action="" method="post">
-    {% csrf_token %}
-    <a href="{% url 'blogapp:list' %}">Cancel</a>
-    <button type="submit">Yes</button>
-</form>
+<div class="row mt-5">
+    <div class="col-md-6">
+        <div class="card card-body">
+            <p>Are you sure you want to delete "{{object}}"?</p>
 
+            <form action=" " method="POST">
+                {% csrf_token %}
+                <a class="btn btn-warning" href="{% url 'blogapp:list' %}">Cancel</a>
+                <input class="btn btn-danger" type="submit" name="Confirm" />
+            </form>
 
-    
-{% endblock content %}
-    
+        </div>
+    </div>
+</div>
+{% endblock %}
