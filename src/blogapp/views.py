@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Like
 from .forms import PostForm, CommentForm
-# Create your views here.
+from django.contrib.auth.decorators import login_required
+
 
 def post_list(request):
     qs = Post.objects.all()
@@ -10,7 +11,7 @@ def post_list(request):
     }
     return render(request, "blogapp/post_list.html", context)
 
-
+@login_required()
 def post_create(request):
     #form = PostForm(request.POST or None, request.FILES or None)
     form = PostForm()
@@ -25,6 +26,8 @@ def post_create(request):
         'form' : form
     }
     return render(request, "blogapp/post_create.html", context)
+
+
 
 def post_detail(request, slug):
     form = CommentForm()
@@ -44,6 +47,7 @@ def post_detail(request, slug):
     }
     return render(request, "blogapp/post_detail.html", context)
 
+@login_required()
 def post_update(request, slug):
     obj = get_object_or_404(Post, slug=slug)
     form = PostForm(request.POST or None, request.FILES or None, instance=obj)
@@ -72,6 +76,7 @@ def post_delete(request, slug):
     }
     return render(request, "blogapp/post_delete.html", context)
 
+@login_required()
 def like(request, slug):
     if request.method == "POST":
         obj = get_object_or_404(Post, slug=slug)
